@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="homezero.gtmloader.GTMloader" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Google Tag Manager Loader</name>
+    <description/>
+    <properties>
+        <propertyGroup caption="General">
+            <property key="gtmId" type="expression" required="true">
+                <caption>GTM ID</caption>
+                <description>The GTM code you get from Google (e.g. GTM-MCDS5LM9).</description>
+                <returnType type="String" />
+            </property>
+            <property key="sendCustomProps" type="boolean" defaultValue="false">
+                <caption>Send custom page view?</caption>
+                <description>Determines whether custom dataLayer variables are sent with the page view event. See the advanced tab to configure which variables are sent.</description>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Advanced">
+            <property key="pageViewEventName" type="string">
+                <caption>Page View Event Name</caption>
+                <description>Name of the custom event to track page views in GTM.</description>
+            </property>
+            <property key="sendPageTitle" type="boolean" defaultValue="false">
+                <caption>Mendix Page Title?</caption>
+                <description>Will send the page title as entered in Studio Pro.</description>
+            </property>
+            <property key="sendModuleLocation" type="boolean" defaultValue="false">
+                <caption>Mendix Module Location?</caption>
+                <description>Will send the module location in Studio Pro.</description>
+            </property>
+            <property key="sendPageURL" type="boolean" defaultValue="false">
+                <caption>Mendix Page URL?</caption>
+                <description>Will send the trimmed page URL (removes non-persistent entity IDs).</description>
+            </property>
+            <property key="sendSessionID" type="boolean" defaultValue="false">
+                <caption>Mendix Session ID?</caption>
+                <description>Will send the session ID for all page view events.</description>
+            </property>
+            <property key="sendAdditionalProps" type="boolean" defaultValue="false">
+                <caption>Additional Properties?</caption>
+                <description>Will send the list of additional properties in string format.</description>
+            </property>
+            <property key="additionalProps" type="object" isList="true" required="false">
+                <caption>Additional Properties</caption>
+                <description />
+                <properties>
+                    <propertyGroup caption="Properties">
+                        <property key="propName" type="string">
+                            <caption>Property Name</caption>
+                            <description>Property name that is sent to your google tag manager container.</description>
+                        </property>
+                        <property key="propValue" type="expression">
+                            <caption>Property Value</caption>
+                            <description>Value that is sent to your google tag manager container.</description>
+                            <returnType type="String" />
+                        </property>
+                    </propertyGroup>
+                </properties>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>
