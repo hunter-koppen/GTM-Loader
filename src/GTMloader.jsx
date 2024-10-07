@@ -6,7 +6,7 @@ export class GTMloader extends Component {
     render() {
         return (
             <GTMContainer
-                gtmId={this.props.gtmId}
+                gtmCodes={this.props.gtmCodes}
                 sendCustomProps={this.props.sendCustomProps}
                 pageViewEventName={this.props.pageViewEventName}
                 sendPageTitle={this.props.sendPageTitle}

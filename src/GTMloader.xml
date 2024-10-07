@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="homezero.gtmloader.GTMloader" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
-        supportedPlatform="Web"
-        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+<widget id="homezero.gtmloader.GTMloader" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Google Tag Manager Loader</name>
     <description/>
     <properties>
         <propertyGroup caption="General">
-            <property key="gtmId" type="expression" required="true">
-                <caption>GTM ID</caption>
-                <description>The GTM code you get from Google (e.g. GTM-MCDS5LM9).</description>
-                <returnType type="String" />
+            <property key="gtmCodes" type="object" isList="true" required="true">
+                <caption>List of all GTM codes</caption>
+                <description />
+                <properties>
+                    <propertyGroup caption="Codes">
+                        <property key="gtmCode" type="expression">
+                            <caption>GTM Code</caption>
+                            <description>The GTM code you get from Google (e.g. GTM-MCDS5LM9).</description>
+                            <returnType type="String" />
+                        </property>
+                    </propertyGroup>
+                </properties>
             </property>
             <property key="sendCustomProps" type="boolean" defaultValue="false">
                 <caption>Send custom page view?</caption>

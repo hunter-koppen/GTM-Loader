@@ -24,18 +24,37 @@ export class GTMContainer extends Component {
         const dataAvailable = this.checkDataAvailability();
         if (dataAvailable) {
             if (!this.init) {
-                const tagManagerArgsInitialize = {
-                    gtmId: this.props.gtmId.value
-                };
-                TagManager.initialize(tagManagerArgsInitialize);
+                for (const object of this.props.gtmCodes) {
+                    if (object.gtmCode.value) {
+                        const gtmId = object.gtmCode.value;
+                        const gtmScriptBaseSrc = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+
+                        // Check if the GTM script for this ID is already present in the DOM
+                        const isGtmLoaded = Array.from(document.getElementsByTagName("script")).some(
+                            script => script.src && script.src.startsWith(gtmScriptBaseSrc)
+                        );
+
+                        if (!isGtmLoaded) {
+                            const tagManagerArgsInitialize = {
+                                gtmId: gtmId
+                            };
+                            TagManager.initialize(tagManagerArgsInitialize);
+                            console.log(`GTM container with ID ${gtmId} initialized.`);
+                        } else {
+                            console.log(`GTM container with ID ${gtmId} is already loaded.`);
+                        }
+                    }
+                }
                 this.init = true;
             }
         }
     };
 
     checkDataAvailability = () => {
-        if (this.props.gtmId.status !== "available") {
-            return false;
+        for (const object of this.props.gtmCodes) {
+            if (object.gtmCode.status === "loading") {
+                return false;
+            }
         }
         for (const object of this.props.additionalProps) {
             if (object.propValue.status === "loading") {
